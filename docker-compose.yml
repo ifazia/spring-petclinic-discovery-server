@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  config-server:
+    image: service-config-server:latest
+    container_name: config-server
+    mem_limit: 512M
+    ports:
+      - 8888:8888
+
+  discovery-server:
+    image: service-discovery-server:latest
+    container_name: discovery-server
+    mem_limit: 512M
+    depends_on:
+      - config-server
+
+    ports:
+      - 8761:8761
+  
